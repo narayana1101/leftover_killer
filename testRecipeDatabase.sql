@@ -5,7 +5,7 @@ insert into recipe(recipe_name) values  ("cardamom maple salmon"), ("salmon tang
 insert into ingredient(ingredient_name) values 
 ("salt"), ("paprika"), ("ground cardamom"), ("ground coriander"), ("ground black pepper"), ("grapeseed oil"), ("maple syrup"), ("salmon fillet"),
 ("butter"), ("brown sugar"), ("soy sauce"), ("lemon juice"), ("white wine"),
-("garlic"), ("olive oil"), ("New York strip steaks"), ("garlic"), ("balsamic vinegar"),
+("garlic"), ("olive oil"), ("new york strip steaks"), ("garlic"), ("balsamic vinegar"),
 ("red wine"), ("fresh rosemary"),
 ("adobo seasoning");
 

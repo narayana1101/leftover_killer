@@ -1,12 +1,11 @@
-use chain_gang;
 -- insert into recipe(recipe_name) values ("test");
-insert into recipe(recipe_name) values  ("Cardamom Maple Salmon"), ("Salmon Tango"), ("Delicious Salmon"), ("WOW Salmon"), ("Garlic Steak with Garlic"),
-("Rosemary Steak"), ("Argentinean Skirt Steaks"), ("Steak with Salmon");
+insert into recipe(recipe_name) values  ("cardamom maple salmon"), ("salmon tango"), ("delicious salmon"), ("wow salmon"), ("garlic steak with garlic"),
+("rosemary steak"), ("argentinean skirt steaks"), ("steak with salmon");
 
 insert into ingredient(ingredient_name) values 
 ("salt"), ("paprika"), ("ground cardamom"), ("ground coriander"), ("ground black pepper"), ("grapeseed oil"), ("maple syrup"), ("salmon fillet"),
 ("butter"), ("brown sugar"), ("soy sauce"), ("lemon juice"), ("white wine"),
-("garlic"), ("olive oil"), ("New York strip steaks"), ("garlic"), ("balsamic vinegar"),
+("garlic"), ("olive oil"), ("new york strip steaks"), ("garlic"), ("balsamic vinegar"),
 ("red wine"), ("fresh rosemary"),
 ("adobo seasoning");
 

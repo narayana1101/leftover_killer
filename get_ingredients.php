@@ -1,7 +1,8 @@
 <?php
 
+include('db_config.php');
 // Connect to database.
-$con = mysqli_connect("localhost", "phpclient", "leftoverkillerphp", "leftover_killer");
+$con = mysqli_connect($servername, $username, $password, $dbname);
 $response = array();
 // Check if connection succeded.
 if($con) {

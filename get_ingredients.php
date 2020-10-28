@@ -14,7 +14,6 @@ if($con) {
         // Loop through database table fetching ingrient id,name and image URL.
         while($row = $result->mysqli_fetch_assoc($result) ) {
             // Have an array with index 0,1,2 related to id, name, image respectively
-            // into a class Ingredient.
             $Ingredient = array();
             $Ingredient['Id'] = $row['ingredient_id'];
             $Ingredient['Name'] = $row['ingredient_name'];
@@ -24,6 +23,7 @@ if($con) {
         }
     }
 } else {
+    // If connection failed.
     $result["success"]=false;
     die ("Database Connection Failed : " . mysqli_connect_error());
 }

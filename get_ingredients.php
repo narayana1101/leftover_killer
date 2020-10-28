@@ -6,7 +6,8 @@ $con = mysqli_connect($servername, $username, $password, $dbname);
 $response = array();
 // Check if connection succeded.
 if($con) {
-    $sql = "SELECT * FROM ingredient";
+    echo (" it gets in here ");
+    $sql = "select * from ingredient";
     $result = mysqli_query($conn, $sql);
     // Now below fetch all the ingredient data.
     $response["ingredients"] = array();

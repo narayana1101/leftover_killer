@@ -25,7 +25,7 @@ if (empty($ingredient_list)) {
 	$response["success"] = true;
 	$ingredients_id = $RecipeModel->get_ingredient_id($ingredient_list);
 	$recipe_list = $RecipeModel->get_recipe_id_with_ingredients($ingredients_id);
-	$response['matching_recipes'] = $recipe_list;
+	$response['recipes'] = $recipe_list;
 }
 
 echo (json_encode($response));

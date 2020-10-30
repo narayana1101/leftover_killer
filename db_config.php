@@ -2,5 +2,5 @@
 $servername = "localhost";
 $username = "phpclient";
 $password = "leftoverkillerphp";
-$dbname = "spike";
+$dbname = "leftover_killer";
 ?>

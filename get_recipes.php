@@ -28,7 +28,7 @@ if (mysqli_num_rows($result) > 0) {
 		$recipe["recipe_name"] = $row["recipe_name"];
 		$recipe["imageURL"] = $row["imageURL"];
 
-		array_push($response["recipe"], $recipe);
+		array_push($response["recipes"], $recipe);
 	}
 } 
 

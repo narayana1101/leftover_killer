@@ -14,12 +14,12 @@ class GetRecipes
 	public function process_query(){
         $sql = "SELECT recipe_id, recipe_name, imageURL from recipe ORDER BY popularity DESC";
         $response= array();
-        $stmt = self::$database->stmt_init();
         $stmt = self::$database->prepare($sql);
 
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result > 0) {
+
+        if ($result->num_rows > 0) {
 
             $response["success"] = true;
             $response["recipes"] = array();

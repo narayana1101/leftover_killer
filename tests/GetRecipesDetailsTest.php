@@ -11,10 +11,10 @@ class GetRecipesDetailsTest extends TestCase
     protected function setUp(): void
     {
         // please change it as your local or remote
-        $servername = '';
-        $username = '';
-        $password = '';
-        $dbname = '';
+        $servername = '18.222.31.30';
+        $username = 'phpclient';
+        $password = 'leftoverkillerphp';
+        $dbname = 'leftover_killer';
         self::$RecipeModel = new GetRecipeDetails($servername, $username, $password, $dbname);
     }
 
@@ -33,20 +33,20 @@ class GetRecipesDetailsTest extends TestCase
         $actual_recipe_id = 1;
         $actual_recipe_name = "cardamom maple salmon";
         $actual_recipe_img = "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5375740.jpg&w=596&h=596&c=sc&poi=face&q=85";
-        $recipes_list = self::$RecipeModel->processIngredientInfo($actual_recipe_id );
+        $recipes_list = self::$RecipeModel->processRecipeInfo($actual_recipe_id);
 
-        $this->assertEquals($actual_recipe_id, $recipes_list[0]["recipe_id"]);
-        $this->assertEquals($actual_recipe_name, $recipes_list[0]["recipe_name"]);
-        $this->assertEquals($actual_recipe_img, $recipes_list[0]["img_url"]);
+        $this->assertEquals($actual_recipe_id, $recipes_list["id"]);
+        $this->assertEquals($actual_recipe_name, $recipes_list["name"]);
+        $this->assertEquals($actual_recipe_img, $recipes_list["image"]);
     }
 
     /** @covers */
     public function testIngredient(): void
     {
-        $response = array();
+        $recipes_list = array();
         $actual_recipe_id = 1;
         
-        $recipes_list = self::$RecipeModel->processIngredientInfo($actual_recipe_id, $response);
+        $recipes_list = self::$RecipeModel->processIngredientInfo($actual_recipe_id, $recipes_list);
 
         $Ingredient_id = 5;
         $Ingredient_name = "black pepper";

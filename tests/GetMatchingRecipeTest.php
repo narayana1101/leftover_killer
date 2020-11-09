@@ -11,10 +11,10 @@ class GetMatchingRecipeTest extends TestCase
     protected function setUp(): void
     {
         // please change it as your local or remote
-        $servername = '';
-        $username = '';
-        $password = '';
-        $dbname = '';
+        $servername = '18.222.31.30';
+        $username = 'phpclient';
+        $password = 'leftoverkillerphp';
+        $dbname = 'leftover_killer';
         self::$RecipeModel = new Recipe($servername, $username, $password, $dbname);
     }
 

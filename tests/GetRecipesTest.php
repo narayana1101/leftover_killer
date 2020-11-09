@@ -8,15 +8,17 @@ class GetRecipesTest extends TestCase
 {
 
     protected static $RecipeModel;
+    protected static $conn;
 
     protected function setUp(): void
     {
         // please change it as your local or remote
-        $servername = '';
-        $username = '';
-        $password = '';
-        $dbname = '';
+        $servername = '18.222.31.30';
+        $username = 'phpclient';
+        $password = 'leftoverkillerphp';
+        $dbname = 'leftover_killer';
         self::$RecipeModel = new GetRecipes($servername, $username, $password, $dbname);
+        self::$conn = mysqli_connect($servername, $username, $password, $dbname);
     }
 
     public function tearDown(): void
@@ -28,36 +30,17 @@ class GetRecipesTest extends TestCase
 
 
 
-    public function testProcessQuery(): void
+    public function testGetRecipesNumber(): void
     {
+        $result = array();
         $result = self::$RecipeModel->process_query();
         
-        $sql = "SELECT recipe_id, recipe_name, imageURL from recipe ORDER BY popularity DESC";
-        $response= array();
-        $stmt = self::$RecipeModel->stmt_init();
-        $stmt = self::$RecipeModel->prepare($sql);
+        $sql = "SELECT recipe_id, recipe_name, imageURL from recipe";
 
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result > 0) {
 
-            $response["success"] = true;
-            $response["recipes"] = array();
-            while($row = $result->fetch_assoc()) {
-        
-                $recipe = array();
-                $recipe["recipe_id"] = $row["recipe_id"];
-                $recipe["recipe_name"] = $row["recipe_name"];
-                $recipe["img_url"] = $row["imageURL"];
-        
-                array_push($response["recipes"], $recipe);
-            }
-        } 
-        else{
-            $response["success"] = false;	
-        }
+        $response = mysqli_query(self::$conn, $sql);
 
-        $this->assertEquals($response, $result);
+        $this->assertEquals(mysqli_num_rows($response), count($result["recipes"]));
 
 
     }

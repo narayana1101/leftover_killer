@@ -4,7 +4,8 @@
 
 class GetRecipeDetails
 {
-	public static $database;
+    public static $database;
+    
 
 	public function __construct($servername, $username, $password, $dbname){
 		self::$database = new mysqli($servername, $username, $password, $dbname);
@@ -14,7 +15,7 @@ class GetRecipeDetails
         $sql_select_recipe = "SELECT * FROM recipe WHERE recipe_id = ?";
         $response= array();
         $response["success"] = true;
-        $response["ingredients"] = array();
+        
 
 
         
@@ -48,6 +49,7 @@ class GetRecipeDetails
     // process ingredient info
     public function processIngredientInfo($recipe_id, $response){
         $sql_find_ingredient_by_recipe_id = "SELECT * FROM ingredient WHERE ingredient_id IN (SELECT ingredient_id FROM recipe_ingredient WHERE recipe_id = ?)";
+        $response["ingredients"] = array();
         $ingredient = array();
         $stmt = self::$database->stmt_init();
         $stmt = self::$database->prepare($sql_find_ingredient_by_recipe_id);
@@ -59,9 +61,9 @@ class GetRecipeDetails
         $result = $stmt->get_result();
         while ($row = $result->fetch_assoc()) {
 
-            echo 'Ingredient ID: ' . $row['ingredient_id'] . " ";
-            echo 'Ingredient name: ' . $row['ingredient_name'] . "\n";
-            
+            //echo 'Ingredient ID: ' . $row['ingredient_id'] . " ";
+            //echo 'Ingredient name: ' . $row['ingredient_name'] . "\n";
+
             $ingredient['id'] = $row['ingredient_id'];
             $ingredient['name'] = $row['ingredient_name'];
             $ingredient['imageURL'] = $row['imageURL'];

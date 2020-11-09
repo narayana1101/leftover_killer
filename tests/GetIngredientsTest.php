@@ -11,10 +11,10 @@ class GetIngredientsTest extends TestCase
     protected function setUp(): void
     {
         // please change it as your local or remote
-        $servername = '';
-        $username = '';
-        $password = '';
-        $dbname = '';
+        $servername = '18.222.31.30';
+        $username = 'phpclient';
+        $password = 'leftoverkillerphp';
+        $dbname = 'leftover_killer';
         self::$RecipeModel = new GetIngredients($servername, $username, $password, $dbname);
     }
 
@@ -29,31 +29,21 @@ class GetIngredientsTest extends TestCase
     /** @covers */
     public function testProcessQuery(): void
     {
+        $result =  array();
         $result = self::$RecipeModel->process_query();
         
-        $sql = "SELECT * FROM ingredient";
-        $response= array();
-        $stmt = self::$RecipeModel->stmt_init();
-        $stmt = self::$RecipeModel->prepare($sql);
+        $ingredient_id = 1;
+        $ingredient_name = "salt";
 
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result > 0) {	
-            $response["success"] = true;
-            $response["ingredients"] = array();
-            while($row = $result->fetch_assoc()) {
-                $Ingredient = array();
-                $Ingredient["id"] = $row["ingredient_id"];
-                $Ingredient["name"] = $row["ingredient_name"];
-                $Ingredient["image_url"] = $row["imageURL"];
-                array_push($response["ingredients"], $Ingredient);
-            }
-        } 
-        else{
-            $response["success"] = false;	
-        }
+        $this->assertEquals($ingredient_id, $result["ingredients"][0]["id"]);
+        $this->assertEquals($ingredient_name, $result["ingredients"][0]["name"]);
 
-        $this->assertEquals($response, $result);
+        $ingredient_id = 2;
+        $ingredient_name = "paprika";
+
+
+        $this->assertEquals($ingredient_id, $result["ingredients"][1]["id"]);
+        $this->assertEquals($ingredient_name, $result["ingredients"][1]["name"]);
 
 
     }

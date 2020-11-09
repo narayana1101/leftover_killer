@@ -9,7 +9,8 @@ class GetIngredients
 		self::$database = new mysqli($servername, $username, $password, $dbname);
 	}
 
-	public function process_query($sql){
+	public function process_query(){
+        $sql = "SELECT * FROM ingredient";
         $response= array();
         $stmt = self::$database->stmt_init();
         $stmt = self::$database->prepare($sql);

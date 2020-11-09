@@ -12,7 +12,7 @@ if (!$conn) {
 // select all fields in ingredients
 
 
-$sql = "SELECT * FROM ingredient";
+
 
 $response = $conn->process_query($sql);
 

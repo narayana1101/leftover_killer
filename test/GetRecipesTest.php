@@ -1,15 +1,36 @@
 <?php
-// references: https://stackoverflow.com/questions/17226762/mysqli-bind-param-for-array-of-strings
-// get_recipes class
-class GetRecipes
+use PHPUnit\Framework\TestCase;
+
+require __DIR__ . "/../classes/getRecipes.php";
+
+class GetIngredientsTest extends TestCase
 {
-	public static $database;
 
-	public function __construct($servername, $username, $password, $dbname){
-		self::$database = new mysqli($servername, $username, $password, $dbname);
-	}
+    protected static $RecipeModel;
 
-	public function process_query(){
+    protected function setUp(): void
+    {
+        // please change it as your local or remote
+        $servername = '';
+        $username = '';
+        $password = '';
+        $dbname = '';
+        self::$RecipeModel = new Recipe($servername, $username, $password, $dbname);
+    }
+
+    public function tearDown(): void
+    {
+        self::$RecipeModel = null;
+    }
+
+
+
+
+    /** @covers */
+    public function testProcessQuery(): void
+    {
+        $result = self::$RecipeModel->process_query();
+        
         $sql = "SELECT recipe_id, recipe_name, imageURL from recipe ORDER BY popularity DESC";
         $response= array();
         $stmt = self::$database->stmt_init();
@@ -34,9 +55,12 @@ class GetRecipes
         else{
             $response["success"] = false;	
         }
-        return $response;
+
+        $this->assertEquals($response, $result);
+
+
     }
 
-	
+
 }
 ?>

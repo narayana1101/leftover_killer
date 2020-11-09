@@ -66,4 +66,4 @@ class Recipe
 		return $recipes_array;
 	}
 }
-
+?>

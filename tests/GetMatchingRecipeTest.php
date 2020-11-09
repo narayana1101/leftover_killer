@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-require __DIR__ . "/../src/classes/recipe.php";
+require __DIR__ . "/../classes/recipe.php";
 
 class GetMatchingRecipeTest extends TestCase
 {

@@ -15,7 +15,7 @@ class GetIngredientsTest extends TestCase
         $username = '';
         $password = '';
         $dbname = '';
-        self::$RecipeModel = new Recipe($servername, $username, $password, $dbname);
+        self::$RecipeModel = new GetIngredients($servername, $username, $password, $dbname);
     }
 
     public function tearDown(): void

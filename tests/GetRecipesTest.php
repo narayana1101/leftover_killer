@@ -1,9 +1,10 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
+
 require __DIR__ . "/../classes/getRecipes.php";
 
-class GetIngredientsTest extends TestCase
+class GetRecipesTest extends TestCase
 {
 
     protected static $RecipeModel;
@@ -15,7 +16,7 @@ class GetIngredientsTest extends TestCase
         $username = '';
         $password = '';
         $dbname = '';
-        self::$RecipeModel = new Recipe($servername, $username, $password, $dbname);
+        self::$RecipeModel = new GetRecipes($servername, $username, $password, $dbname);
     }
 
     public function tearDown(): void
@@ -26,15 +27,15 @@ class GetIngredientsTest extends TestCase
 
 
 
-    /** @covers */
+
     public function testProcessQuery(): void
     {
         $result = self::$RecipeModel->process_query();
         
         $sql = "SELECT recipe_id, recipe_name, imageURL from recipe ORDER BY popularity DESC";
         $response= array();
-        $stmt = self::$database->stmt_init();
-        $stmt = self::$database->prepare($sql);
+        $stmt = self::$RecipeModel->stmt_init();
+        $stmt = self::$RecipeModel->prepare($sql);
 
         $stmt->execute();
         $result = $stmt->get_result();

@@ -9,8 +9,8 @@ class GetRecipeDetails
 		self::$database = new mysqli($servername, $username, $password, $dbname);
 	}
     // process recipe info
-	public function processRecipeInfo($sql, $recipe_id){
-
+	public function processRecipeInfo($recipe_id){
+        $sql_select_recipe = "SELECT * FROM recipe WHERE recipe_id = ?";
         $response= array();
         $response["success"] = true;
         $response["ingredients"] = array();
@@ -21,7 +21,7 @@ class GetRecipeDetails
         // process recipe info
         
         $stmt = self::$database->stmt_init();
-        $stmt = self::$database->prepare($sql);
+        $stmt = self::$database->prepare($sql_select_recipe);
 
         $stmt->bind_param("i", $recipe_id_pre);
         $recipe_id_pre = $recipe_id;
@@ -45,10 +45,11 @@ class GetRecipeDetails
     }
 
     // process ingredient info
-    public function processIngredientInfo($sql, $recipe_id){
+    public function processIngredientInfo($recipe_id, $response){
+        $sql_find_ingredient_by_recipe_id = "SELECT * FROM ingredient WHERE ingredient_id IN (SELECT ingredient_id FROM recipe_ingredient WHERE recipe_id = ?)";
         $ingredient = array();
         $stmt = self::$database->stmt_init();
-        $stmt = self::$database->prepare($sql);
+        $stmt = self::$database->prepare($sql_find_ingredient_by_recipe_id);
 
         $stmt->bind_param("i", $recipe_id_pre);
         $recipe_id_pre = $recipe_id;
@@ -57,17 +58,18 @@ class GetRecipeDetails
         $result = $stmt->get_result();
         while ($row = $result->fetch_assoc()) {
 
-            // echo 'Ingredient ID: ' . $row['ingredient_id'] . " ";
-            // echo 'Ingredient name: ' . $row['ingredient_name'] . "\n";
+            echo 'Ingredient ID: ' . $row['ingredient_id'] . " ";
+            echo 'Ingredient name: ' . $row['ingredient_name'] . "\n";
             
             $ingredient['id'] = $row['ingredient_id'];
             $ingredient['name'] = $row['ingredient_name'];
             $ingredient['imageURL'] = $row['imageURL'];
+            array_push($response["ingredients"], $ingredient);
             
         }
         $stmt->free_result();
         $stmt->close();
-        return $ingredient;
+        return $response;
         
     }
 	

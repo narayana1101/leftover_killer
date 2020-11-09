@@ -1,6 +1,6 @@
 <?php
 // references: https://stackoverflow.com/questions/17226762/mysqli-bind-param-for-array-of-strings
-// get_ingredients class
+// get_recipe_details class
 
 class GetRecipeDetails
 {

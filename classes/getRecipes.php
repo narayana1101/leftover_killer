@@ -19,23 +19,20 @@ class GetRecipes
         $stmt->execute();
         $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
 
-            $response["success"] = true;
-            $response["recipes"] = array();
-            while($row = $result->fetch_assoc()) {
+        $response["success"] = true;
+        $response["recipes"] = array();
+        while($row = $result->fetch_assoc()) {
         
-                $recipe = array();
-                $recipe["recipe_id"] = $row["recipe_id"];
-                $recipe["recipe_name"] = $row["recipe_name"];
-                $recipe["img_url"] = $row["imageURL"];
+            $recipe = array();
+            $recipe["recipe_id"] = $row["recipe_id"];
+            $recipe["recipe_name"] = $row["recipe_name"];
+            $recipe["img_url"] = $row["imageURL"];
         
-                array_push($response["recipes"], $recipe);
-            }
-        } 
-        else{
-            $response["success"] = false;	
+            array_push($response["recipes"], $recipe);
         }
+         
+
         return $response;
     }
 

@@ -3,6 +3,10 @@ use PHPUnit\Framework\TestCase;
 
 
 require __DIR__ . "/../classes/getRecipes.php";
+/** 
+ * @covers \GetRecipes
+ * */
+
 
 class GetRecipesTest extends TestCase
 {
@@ -29,7 +33,9 @@ class GetRecipesTest extends TestCase
 
 
 
-
+    /**
+     *  @covers  \GetRecipes::process_query() 
+     * */
     public function testGetRecipesNumber(): void
     {
         $result = array();

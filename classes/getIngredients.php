@@ -11,28 +11,25 @@ class GetIngredients
 
 	public function process_query(){
         
-        $sql = "SELECT * FROM ingredient";
+        $sql= "SELECT * FROM ingredient";
         $response= array();
 
         $stmt = self::$database->prepare($sql);
 
         $stmt->execute();
         $result = $stmt->get_result();
-        if ($result->num_rows > 0) {	
 
-            $response["success"] = true;
-            $response["ingredients"] = array();
-            while($row = $result->fetch_assoc()) {
-                $Ingredient = array();
-                $Ingredient["id"] = $row["ingredient_id"];
-                $Ingredient["name"] = $row["ingredient_name"];
-                $Ingredient["image_url"] = $row["imageURL"];
-                array_push($response["ingredients"], $Ingredient);
-            }
-        } 
-        else{
-            $response["success"] = false;	
+        $response["success"] = true;
+        $response["ingredients"] = array();
+        while($row = $result->fetch_assoc()) {
+            $Ingredient = array();
+            $Ingredient["id"] = $row["ingredient_id"];
+            $Ingredient["name"] = $row["ingredient_name"];
+            $Ingredient["image_url"] = $row["imageURL"];
+            array_push($response["ingredients"], $Ingredient);
         }
+        
+        
         return $response;
     }
 

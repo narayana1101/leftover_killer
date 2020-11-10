@@ -3,6 +3,11 @@ use PHPUnit\Framework\TestCase;
 
 require __DIR__ . "/../classes/getIngredients.php";
 
+
+/** 
+ * @covers \GetIngredients
+ * */
+
 class GetIngredientsTest extends TestCase
 {
 
@@ -26,7 +31,9 @@ class GetIngredientsTest extends TestCase
 
 
 
-    /** @covers */
+    /** 
+     * @covers \GetIngredients::process_query
+    */
     public function testProcessQuery(): void
     {
         $result =  array();
@@ -47,7 +54,6 @@ class GetIngredientsTest extends TestCase
 
 
     }
-
 
 }
 ?>

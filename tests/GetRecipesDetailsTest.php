@@ -3,10 +3,16 @@ use PHPUnit\Framework\TestCase;
 
 require __DIR__ . "/../classes/getRecipeDetails.php";
 
+
+/** 
+ * @covers \GetRecipeDetails
+ * */
+
 class GetRecipesDetailsTest extends TestCase
 {
 
     protected static $RecipeModel;
+
 
     protected function setUp(): void
     {
@@ -26,7 +32,9 @@ class GetRecipesDetailsTest extends TestCase
 
 
 
-    /** @covers */
+    /**  
+     * @covers \GetRecipeDetails::processRecipeInfo
+     * */
     public function testProcessRecipeInfo(): void
     {
 
@@ -40,7 +48,9 @@ class GetRecipesDetailsTest extends TestCase
         $this->assertEquals($actual_recipe_img, $recipes_list["image"]);
     }
 
-    /** @covers */
+    /** 
+     * @covers \GetRecipeDetails::processIngredientInfo 
+     * */
     public function testIngredient(): void
     {
         $recipes_list = array();

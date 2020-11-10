@@ -13,8 +13,7 @@ if (!$conn) {
 
 
 
-
-$response = $conn->process_query($sql);
+$response = $conn->process_query();
 
 // encode into json
 echo (json_encode($response));

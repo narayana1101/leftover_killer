@@ -3,11 +3,17 @@ use PHPUnit\Framework\TestCase;
 
 require __DIR__ . "/../classes/recipe.php";
 
+/** 
+ * @covers \Recipe
+ * */
+
 class GetMatchingRecipeTest extends TestCase
 {
 
     protected static $RecipeModel;
 
+
+    
     protected function setUp(): void
     {
         // please change it as your local or remote
@@ -41,7 +47,9 @@ class GetMatchingRecipeTest extends TestCase
         return true;
     }
 
-    /** @covers */
+    /** 
+     * @covers \Recipe::get_ingredient_id
+     * */
     public function testGetIngredientID(): void
     {
         $ingredeint_list = ["salt"];
@@ -49,7 +57,9 @@ class GetMatchingRecipeTest extends TestCase
         $result = self::$RecipeModel->get_ingredient_id($ingredeint_list);
         $this->assertEquals($actual, $result);
     }
-    /** @covers */
+    /** 
+     * @covers  \Recipe::get_ingredient_id
+     * */
     public function testGetIngredientByIdNotExist(): void
     {
         $ingredeint_list = ["lalala"];
@@ -58,7 +68,9 @@ class GetMatchingRecipeTest extends TestCase
         $this->assertEquals($actual, $result);
     }
 
-    /** @covers */
+    /**
+     *  @covers \Recipe::get_ingredient_id
+    */
     public function testGetIngredientByMutipleId(): void
     {
         $ingredeint_list = ["paprika", "salt"];
@@ -69,8 +81,10 @@ class GetMatchingRecipeTest extends TestCase
 
     }
 
-    /** @covers */
-    public function testGetRecipeIdWithIngredients(): void
+    /** 
+     * @covers \Recipe::get_recipe_id_with_ingredients
+     * */
+    public function get_recipe_id_with_ingredients(): void
     {
         $ingredient_list = ["salt",
             "paprika",

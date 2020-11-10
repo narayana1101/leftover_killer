@@ -84,7 +84,7 @@ class GetMatchingRecipeTest extends TestCase
     /** 
      * @covers \Recipe::get_recipe_id_with_ingredients
      * */
-    public function get_recipe_id_with_ingredients(): void
+    public function testGetRecipeIdWithIngredients(): void
     {
         $ingredient_list = ["salt",
             "paprika",

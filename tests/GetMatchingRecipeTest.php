@@ -96,7 +96,7 @@ class GetMatchingRecipeTest extends TestCase
             "salmon fillet"];
         $ingredeint_id = self::$RecipeModel->get_ingredient_id($ingredient_list);
         $actual_recipe_id = 1;
-        $actual_recipe_name = "cardamom maple salmon";
+        $actual_recipe_name = "Cardamom Maple Salmon";
         $actual_recipe_img = "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5375740.jpg&w=596&h=596&c=sc&poi=face&q=85";
         $recipes_list = self::$RecipeModel->get_recipe_id_with_ingredients($ingredeint_id);
 

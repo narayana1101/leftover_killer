@@ -39,7 +39,7 @@ class GetRecipesDetailsTest extends TestCase
     {
 
         $actual_recipe_id = 1;
-        $actual_recipe_name = "cardamom maple salmon";
+        $actual_recipe_name = "Cardamom Maple Salmon";
         $actual_recipe_img = "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5375740.jpg&w=596&h=596&c=sc&poi=face&q=85";
         $recipes_list = self::$RecipeModel->processRecipeInfo($actual_recipe_id);
 
@@ -58,14 +58,14 @@ class GetRecipesDetailsTest extends TestCase
         
         $recipes_list = self::$RecipeModel->processIngredientInfo($actual_recipe_id, $recipes_list);
 
-        $Ingredient_id = 5;
-        $Ingredient_name = "black pepper";
+        $Ingredient_id = 1;
+        $Ingredient_name = "salt";
 
         $this->assertEquals($Ingredient_id, $recipes_list["ingredients"][0]["id"]);
         $this->assertEquals($Ingredient_name, $recipes_list["ingredients"][0]["name"]);
 
-        $Ingredient_id = 6;
-        $Ingredient_name = "grapeseed oil";
+        $Ingredient_id = 2;
+        $Ingredient_name = "paprika";
 
         $this->assertEquals($Ingredient_id, $recipes_list["ingredients"][1]["id"]);
         $this->assertEquals($Ingredient_name, $recipes_list["ingredients"][1]["name"]);
@@ -82,27 +82,27 @@ class GetRecipesDetailsTest extends TestCase
         $this->assertEquals($Ingredient_id, $recipes_list["ingredients"][3]["id"]);
         $this->assertEquals($Ingredient_name, $recipes_list["ingredients"][3]["name"]);
 
-        $Ingredient_id = 7;
-        $Ingredient_name = "maple syrup";
+        $Ingredient_id = 5;
+        $Ingredient_name = "black pepper";
 
         $this->assertEquals($Ingredient_id, $recipes_list["ingredients"][4]["id"]);
         $this->assertEquals($Ingredient_name, $recipes_list["ingredients"][4]["name"]);
 
-        $Ingredient_id = 2;
-        $Ingredient_name = "paprika";
+        $Ingredient_id = 6;
+        $Ingredient_name = "grapeseed oil";
 
         $this->assertEquals($Ingredient_id, $recipes_list["ingredients"][5]["id"]);
         $this->assertEquals($Ingredient_name, $recipes_list["ingredients"][5]["name"]);
 
         
-        $Ingredient_id = 8;
-        $Ingredient_name = "salmon fillet";
+        $Ingredient_id = 7;
+        $Ingredient_name = "maple syrup";
 
         $this->assertEquals($Ingredient_id, $recipes_list["ingredients"][6]["id"]);
         $this->assertEquals($Ingredient_name, $recipes_list["ingredients"][6]["name"]);
 
-        $Ingredient_id = 1;
-        $Ingredient_name = "salt";
+        $Ingredient_id = 8;
+        $Ingredient_name = "salmon fillet";
 
         $this->assertEquals($Ingredient_id, $recipes_list["ingredients"][7]["id"]);
         $this->assertEquals($Ingredient_name, $recipes_list["ingredients"][7]["name"]);

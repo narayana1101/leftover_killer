@@ -1,34 +1,23 @@
 <?php
 include('db_config.php'); // configures the database
-
+include('./classes/getIngredients.php');
 $response= array();
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = new GetIngredients($servername, $username, $password, $dbname);
 // Check connection
 if (!$conn) {
         $result["success"]=false;
-        die("Connection to databse failed: " . mysqli_connect_error());
+        die("Connection to databse failed: " . $conn::$database->connect_error);
 }
 // select all fields in ingredients
-$sql = "SELECT * FROM ingredient";
 
-$result = mysqli_query($conn, $sql);
-if ($result > 0) {	
-	$response["success"] = true;
-	$response["ingredients"] = array();
-	while($row = $result->fetch_assoc()) {
-		$Ingredient = array();
-		$Ingredient["id"] = $row["ingredient_id"];
-		$Ingredient["name"] = $row["ingredient_name"];
-		$Ingredient["image_url"] = $row["imageURL"];
-		array_push($response["ingredients"], $Ingredient);
-	}
-} else{
-	$response["success"] = false;	
-}
+
+
+$response = $conn->process_query();
+
 // encode into json
 echo (json_encode($response));
 // close connection
-$conn->close();
+$conn::$database->close();
 
 ?>

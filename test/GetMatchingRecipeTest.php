@@ -1,20 +1,26 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-require __DIR__ . "/../src/classes/recipe.php";
+require __DIR__ . "/../classes/recipe.php";
+
+/** 
+ * @covers \Recipe
+ * */
 
 class GetMatchingRecipeTest extends TestCase
 {
 
     protected static $RecipeModel;
 
+
+    
     protected function setUp(): void
     {
         // please change it as your local or remote
-        $servername = '';
-        $username = '';
-        $password = '';
-        $dbname = '';
+        $servername = '18.222.31.30';
+        $username = 'phpclient';
+        $password = 'leftoverkillerphp';
+        $dbname = 'leftover_killer';
         self::$RecipeModel = new Recipe($servername, $username, $password, $dbname);
     }
 
@@ -41,7 +47,9 @@ class GetMatchingRecipeTest extends TestCase
         return true;
     }
 
-    /** @covers */
+    /** 
+     * @covers \Recipe::get_ingredient_id
+     * */
     public function testGetIngredientID(): void
     {
         $ingredeint_list = ["salt"];
@@ -49,7 +57,9 @@ class GetMatchingRecipeTest extends TestCase
         $result = self::$RecipeModel->get_ingredient_id($ingredeint_list);
         $this->assertEquals($actual, $result);
     }
-    /** @covers */
+    /** 
+     * @covers  \Recipe::get_ingredient_id
+     * */
     public function testGetIngredientByIdNotExist(): void
     {
         $ingredeint_list = ["lalala"];
@@ -58,7 +68,9 @@ class GetMatchingRecipeTest extends TestCase
         $this->assertEquals($actual, $result);
     }
 
-    /** @covers */
+    /**
+     *  @covers \Recipe::get_ingredient_id
+    */
     public function testGetIngredientByMutipleId(): void
     {
         $ingredeint_list = ["paprika", "salt"];
@@ -69,7 +81,9 @@ class GetMatchingRecipeTest extends TestCase
 
     }
 
-    /** @covers */
+    /** 
+     * @covers \Recipe::get_recipe_id_with_ingredients
+     * */
     public function testGetRecipeIdWithIngredients(): void
     {
         $ingredient_list = ["salt",
@@ -82,7 +96,7 @@ class GetMatchingRecipeTest extends TestCase
             "salmon fillet"];
         $ingredeint_id = self::$RecipeModel->get_ingredient_id($ingredient_list);
         $actual_recipe_id = 1;
-        $actual_recipe_name = "cardamom maple salmon";
+        $actual_recipe_name = "Cardamom Maple Salmon";
         $actual_recipe_img = "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5375740.jpg&w=596&h=596&c=sc&poi=face&q=85";
         $recipes_list = self::$RecipeModel->get_recipe_id_with_ingredients($ingredeint_id);
 
@@ -92,3 +106,4 @@ class GetMatchingRecipeTest extends TestCase
     }
 }
 
+?>

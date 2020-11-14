@@ -59,6 +59,7 @@ if(mysqli_num_rows(mysqli_query($conn, $sql_select_recipe)) == 0){
 	if (mysqli_query($conn, $sql) === TRUE) {
 		$result["success"]=true; 
 	} else {
+		echo $sql;
 		$result["success"]=false; 
 		die("insert recipe failed");
 	}
@@ -112,7 +113,7 @@ if(mysqli_num_rows(mysqli_query($conn, $sql_select_recipe)) == 0){
 
 	}
 
-	
+
 
 
 

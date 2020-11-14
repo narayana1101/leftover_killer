@@ -30,4 +30,4 @@ if (empty($ingredient_list)) {
 
 echo (json_encode($response));
 $RecipeModel::$database->close();
-
+?>

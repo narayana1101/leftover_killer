@@ -25,16 +25,16 @@ class GetIngredientDetails
         $stmt->execute();
         $result = $stmt->get_result();
 
-        $response["top_recipes"] = array() ;
+        $response["Top_recipes"] = array() ;
         
         $counter = 0;
         while (($row = $result->fetch_assoc()) && $counter < 5) {
             $Recipe = array();
 
-            $Recipe['recipe_id'] = $row['recipe_id'];
-            $Recipe['recipe_name'] = $row['recipe_name'];
+            $Recipe['id'] = $row['recipe_id'];
+            $Recipe['name'] = $row['recipe_name'];
             $Recipe['img_url'] = $row['imageURL'];
-            array_push($response["top_recipes"], $Recipe);
+            array_push($response["Top_recipes"], $Recipe);
             ++$counter;
         }
 
@@ -54,8 +54,8 @@ class GetIngredientDetails
 
         $response["success"] = true;   
         while ($row = $result->fetch_assoc()) {
-            $response['name'] = $row['ingredient_name'];
-            $response['image_url'] = $row['imageURL'];
+            $response['ingredient_name'] = $row['ingredient_name'];
+            $response['image_URL'] = $row['imageURL'];
         }
         
 

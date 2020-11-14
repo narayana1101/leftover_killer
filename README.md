@@ -7,3 +7,9 @@
 
 The test folder contains the Unit tests for these scripts.
 The codeCoverageResult folder contains the code coverage reports for the unti tests.
+
+
+## Test Instruction
+1) Setup the PHPUnit, Xdebug, and Composer.
+2) Setup the test files and target files for testing
+3) Use the command: ./vendor/bin/phpunit --coverage-html

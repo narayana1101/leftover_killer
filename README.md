@@ -5,4 +5,5 @@
 4) After successful configuration, these scripts can be exposed via the server.
 5) The clients can execute the exposed scripts.
 
-The tests folder contains the Unit tests for these scripts.
+The test folder contains the Unit tests for these scripts.
+The codeCoverageResult folder contains the code coverage reports for the unti tests.

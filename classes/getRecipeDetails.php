@@ -35,11 +35,11 @@ class GetRecipeDetails
         while ($row = $result->fetch_assoc()) {
             // echo 'ID: ' . $row['recipe_id'] . " ";
             // echo 'Recipe Name: ' . $row['recipe_name'] . "\n";
-            $response['id'] = $row['recipe_id'];
-            $response['name'] = $row['recipe_name'];
-            $response['image'] = $row['imageURL'];
+            $response['recipe_id'] = $row['recipe_id'];
+            $response['recipe_name'] = $row['recipe_name'];
+            $response['img_url'] = $row['imageURL'];
             $response['popularity'] = $row['popularity'];
-            $response['instruction'] = $row['instruction'];
+            $response['instructions'] = $row['instruction'];
         }
         $stmt->free_result();
 

@@ -5,24 +5,31 @@ $response = array();
 // Create connection
 $conn = new GetIngredientDetails($servername, $username, $password, $dbname);
 // Check connection
-if (!$conn) {
+if ($conn::$database->connect_errno) {
         $result["success"]=false;
-        die("Connection to databse failed: " . mysqli_connect_error());
+        $result["error"] = "Connection to databse failed: " . $conn::$database->connect_error;
+        echo (json_encode($result));
+        $conn::$database->close();
 }
 
 // Get the ingredient ID
 $ingredient_id = $_POST["ingredient_id"];
+// echo("" + $ingredient_id);
 
-// Check if we got the ingredient ID
-if (empty($ingreident_id)) {
-	$response["success"] = false;
-	die("Ingredient is missing!");
-} else {
-	// process Ingredient details
-    $response = $conn->processIngredientDetails($ingredient_id);
-}
+// Process ingredient details
+$response = $conn -> processIngredientDetails($ingredient_id, $response);
+
+
+
+// Get top recipes       
+// only selecting the list of recipes asscociated with desired ingredient
+$response = $conn -> topRecipesWithIngredient($ingredient_id, $response);
+
+//array_push($response, $conn -> topRecipesWithIngredient($ingredient_id));
+
+
 // encode into json
 echo (json_encode($response));
 // close connection
-$conn->close();
+$conn::$database->close();
 ?>

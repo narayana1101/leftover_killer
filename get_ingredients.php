@@ -5,9 +5,11 @@ $response= array();
 // Create connection
 $conn = new GetIngredients($servername, $username, $password, $dbname);
 // Check connection
-if (!$conn) {
+if ($conn::$database->connect_errno) {
         $result["success"]=false;
-        die("Connection to databse failed: " . $conn::$database->connect_error);
+        $result["error"] = "Connection to databse failed: " . $conn::$database->connect_error;
+        echo (json_encode($result));
+        $conn::$database->close();
 }
 // select all fields in ingredients
 

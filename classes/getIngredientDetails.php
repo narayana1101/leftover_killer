@@ -25,18 +25,22 @@ class GetIngredientDetails
         $stmt->execute();
         $result = $stmt->get_result();
 
-        $response["top_recipes"] = array() ;
         
         $counter = 0;
-        while (($row = $result->fetch_assoc()) && $counter < 5) {
-            $Recipe = array();
+        if($result->num_rows > 0){
+            $response["top_recipes"] = array() ;
+            while (($row = $result->fetch_assoc()) && $counter < 5) {
+                $Recipe = array();
 
-            $Recipe['recipe_id'] = $row['recipe_id'];
-            $Recipe['recipe_name'] = $row['recipe_name'];
-            $Recipe['img_url'] = $row['imageURL'];
-            array_push($response["top_recipes"], $Recipe);
-            ++$counter;
+                $Recipe['recipe_id'] = $row['recipe_id'];
+                $Recipe['recipe_name'] = $row['recipe_name'];
+                $Recipe['img_url'] = $row['imageURL'];
+                array_push($response["top_recipes"], $Recipe);
+                ++$counter;
+            }
         }
+
+        
 
 
         return $response;
@@ -52,10 +56,17 @@ class GetIngredientDetails
         $result = $stmt->get_result();
 
 
-        $response["success"] = true;   
-        while ($row = $result->fetch_assoc()) {
-            $response['name'] = $row['ingredient_name'];
-            $response['image_url'] = $row['imageURL'];
+          
+        if($result->num_rows > 0){
+            $response["success"] = true; 
+            while ($row = $result->fetch_assoc()) {
+                $response['ingredient_name'] = $row['ingredient_name'];
+                $response['image_url'] = $row['imageURL'];
+            }
+        }
+        else{
+            $response["success"] = false;
+            $response["error"] = "There is no this ingredient";  
         }
         
 

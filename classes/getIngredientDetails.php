@@ -60,7 +60,7 @@ class GetIngredientDetails
         if($result->num_rows > 0){
             $response["success"] = true; 
             while ($row = $result->fetch_assoc()) {
-                $response['ingredient_name'] = $row['ingredient_name'];
+                $response['name'] = $row['ingredient_name'];
                 $response['image_url'] = $row['imageURL'];
             }
         }

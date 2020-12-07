@@ -29,7 +29,7 @@ class GetIngredientDetails
         $counter = 0;
         if($result->num_rows > 0){
             $response["top_recipes"] = array() ;
-            while (($row = $result->fetch_assoc()) && $counter < 5) {
+            while (($row = $result->fetch_assoc()) && $counter < 10) {
                 $Recipe = array();
 
                 $Recipe['recipe_id'] = $row['recipe_id'];

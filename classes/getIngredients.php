@@ -23,8 +23,8 @@ class GetIngredients
         $response["ingredients"] = array();
         while($row = $result->fetch_assoc()) {
             $Ingredient = array();
-            $Ingredient["id"] = $row["ingredient_id"];
-            $Ingredient["name"] = $row["ingredient_name"];
+            $Ingredient["ingredient_id"] = $row["ingredient_id"];
+            $Ingredient["ingredient_name"] = $row["ingredient_name"];
             $Ingredient["image_url"] = $row["imageURL"];
             array_push($response["ingredients"], $Ingredient);
         }

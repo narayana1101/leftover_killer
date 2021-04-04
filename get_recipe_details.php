@@ -19,7 +19,8 @@ $recipe_id = $_POST["recipe_id"];
 
 if (empty($recipe_id)) {
 	$response["success"] = false;
-	die("Missing recipe:");
+	$response["error"] = "Missing recipe:";
+
 } else {
 	
 	// process recipe info
@@ -32,7 +33,7 @@ if (empty($recipe_id)) {
 
 }
 
-echo (json_encode($response));
+echo json_encode($response);
 
 $mysqli::$database->close();
 

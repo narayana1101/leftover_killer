@@ -6,8 +6,10 @@ $response = array();
 $conn = new GetIngredientDetails($servername, $username, $password, $dbname);
 // Check connection
 if ($conn::$database->connect_errno) {
-        $result["success"]=false;
-        die("Connection to databse failed: " . $conn::$database->connect_error);
+        $response["success"]=false;
+        $response["error"] = "Connection to databse failed: " . $conn::$database->connect_error;
+        echo json_encode($response);
+        exit();
 }
 
 // Get the ingredient ID
@@ -27,7 +29,7 @@ $response = $conn -> topRecipesWithIngredient($ingredient_id, $response);
 
 
 // encode into json
-echo (json_encode($response));
+echo json_encode($response);
 // close connection
 $conn::$database->close();
 ?>

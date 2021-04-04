@@ -7,7 +7,9 @@ $conn = new GetRecipes($servername, $username, $password, $dbname);
 
 if (!$conn) {
 	$result["success"] = false;
-	die("Connection failed: " . mysqli_connect_error());
+	$result["error"] = "Connection to databse failed: " . $conn::$database->connect_error;
+    echo json_encode($result);
+    exit();
 }
 
 
@@ -16,7 +18,7 @@ $response = $conn->process_query();
 
 
 
-echo (json_encode($response));
+echo json_encode($response);
 
 $conn::$database->close();
 ?>

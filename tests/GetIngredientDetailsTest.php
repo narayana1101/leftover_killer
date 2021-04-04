@@ -50,12 +50,29 @@ class GetIngredientDetailsTest extends TestCase
         $this->assertEquals($image_URL, $result["image_URL"]);
     }
 
+    /*
+    * @covers \GetIngredientDetails::testprocessIngredientDetailsFailed
+    */
+
+    public function testprocessIngredientDetailsFailed(): void
+    {
+        $ingredient_id = 600;
+
+        $result = array();
+
+
+        $result = self::$RecipeModel->processIngredientDetails($ingredient_id, $result);
+        $this->assertEquals("There is no this ingredient", $result["error"]);
+    }
+
+
+
+
    /*
     * @covers \GetIngredientDetails::topRecipesWithIngredient
     */
 
     
-
     public function testTopRecipesWithIngredient(): void
     {
         $result = array();
@@ -77,8 +94,8 @@ class GetIngredientDetailsTest extends TestCase
         while (($row = $response->fetch_assoc()) && $counter < 5) {
             $Recipe = array();
 
-            $Recipe['id'] = $row['recipe_id'];
-            $Recipe['name'] = $row['recipe_name'];
+            $Recipe['recipe_id'] = $row['recipe_id'];
+            $Recipe['recipe_name'] = $row['recipe_name'];
             $Recipe['img_url'] = $row['imageURL'];
             array_push($expected["Top_recipes"], $Recipe);
             ++$counter;
@@ -89,7 +106,7 @@ class GetIngredientDetailsTest extends TestCase
     }
 
 
-
+    
 
 }
 

@@ -11,16 +11,19 @@ $ingredient_list = $post['ingredients'];
 $RecipeModel = new Recipe($servername, $username, $password, "leftover_killer");
 // Check connection
 if ($RecipeModel::$database->connect_errno) {
-	echo "Failed to connect to MySQL: " . $RecipeModel::$database->connect_error;
+	$response["error"] = "Failed to connect to MySQL: " . $RecipeModel::$database->connect_error;
+	echo json_encode($response);
 	exit();
 }
 
 if (empty($ingredient_list)) {
 	$response["success"] = false;
-	die("Missing ingredient_list:");
+	$response["error"] = "Missing ingredient_list:";
+
 } else if (!is_array($ingredient_list)) {
 	$response["success"] = false;
-	die("ingredients should be an array");
+	$response["error"] = "ingredients should be an array";
+
 } else {
 	$response["success"] = true;
 	$ingredients_id = $RecipeModel->get_ingredient_id($ingredient_list);
@@ -28,6 +31,6 @@ if (empty($ingredient_list)) {
 	$response['recipes'] = $recipe_list;
 }
 
-echo (json_encode($response));
+echo json_encode($response);
 $RecipeModel::$database->close();
 ?>

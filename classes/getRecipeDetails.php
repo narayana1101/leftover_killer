@@ -35,9 +35,9 @@ class GetRecipeDetails
         while ($row = $result->fetch_assoc()) {
             // echo 'ID: ' . $row['recipe_id'] . " ";
             // echo 'Recipe Name: ' . $row['recipe_name'] . "\n";
-            $response['id'] = $row['recipe_id'];
-            $response['name'] = $row['recipe_name'];
-            $response['image'] = $row['imageURL'];
+            $response['recipe_id'] = $row['recipe_id'];
+            $response['recipe_name'] = $row['recipe_name'];
+            $response['imageURL'] = $row['imageURL'];
             $response['popularity'] = $row['popularity'];
             $response['instruction'] = $row['instruction'];
         }
@@ -64,8 +64,8 @@ class GetRecipeDetails
             //echo 'Ingredient ID: ' . $row['ingredient_id'] . " ";
             //echo 'Ingredient name: ' . $row['ingredient_name'] . "\n";
 
-            $ingredient['id'] = $row['ingredient_id'];
-            $ingredient['name'] = $row['ingredient_name'];
+            $ingredient['ingredient_id'] = $row['ingredient_id'];
+            $ingredient['ingredient_name'] = $row['ingredient_name'];
             $ingredient['imageURL'] = $row['imageURL'];
             array_push($response["ingredients"], $ingredient);
             

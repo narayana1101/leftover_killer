@@ -6,17 +6,21 @@ $response= array();
 $conn = new GetIngredients($servername, $username, $password, $dbname);
 // Check connection
 if (!$conn) {
-        $result["success"]=false;
-        die("Connection to databse failed: " . $conn::$database->connect_error);
+        $response["success"]=false;
+        $response["error"] = "Connection to databse failed: " . $conn::$database->connect_error;
+
 }
 // select all fields in ingredients
+else{
+        $response = $conn->process_query();
+}
+        
 
 
 
-$response = $conn->process_query();
 
 // encode into json
-echo (json_encode($response));
+echo json_encode($response);
 // close connection
 $conn::$database->close();
 

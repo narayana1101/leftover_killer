@@ -42,15 +42,15 @@ class GetIngredientsTest extends TestCase
         $ingredient_id = 1;
         $ingredient_name = "salt";
 
-        $this->assertEquals($ingredient_id, $result["ingredients"][0]["id"]);
-        $this->assertEquals($ingredient_name, $result["ingredients"][0]["name"]);
+        $this->assertEquals($ingredient_id, $result["ingredients"][0]["ingredient_id"]);
+        $this->assertEquals($ingredient_name, $result["ingredients"][0]["ingredient_name"]);
 
         $ingredient_id = 2;
         $ingredient_name = "paprika";
 
 
-        $this->assertEquals($ingredient_id, $result["ingredients"][1]["id"]);
-        $this->assertEquals($ingredient_name, $result["ingredients"][1]["name"]);
+        $this->assertEquals($ingredient_id, $result["ingredients"][1]["ingredient_id"]);
+        $this->assertEquals($ingredient_name, $result["ingredients"][1]["ingredient_name"]);
 
 
     }
